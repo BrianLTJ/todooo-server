@@ -41,7 +41,7 @@ function verifyJWT(token,uid) {
 function generateJWT(jti,uid,username) {
     let payload = {
         jti: jti,
-        iss: sha256hash.update(uid).digest('hex'),
+        iss: crypto.createHash(sha256hash).update(uid).digest('hex'),
         uname: username
     };
     return jwt.sign(payload,config.secret, {algorithm: 'HS256',expiresIn:config.token_exp_time});
@@ -68,33 +68,8 @@ let genPSW = function (password) {
 
 
 let checkPSW = function (passwordtoken,password) {
-    // let checkPSW = function (mail,password) {
-    // User.find({mail:mail},function (err, user) {
-    //     if(err) {return false;}
-    //     if(user.length>0){
-    //         let psws = user[0].password.split(".");
-    //         if(psws.length===2){
-    //             console.log('Password checking');
-    //             // console.log(psws[0]);
-    //             // console.log(psws[1]);
-    //             // console.log(genPSWToken(password,psws[1]));
-    //             console.log(psws[0]===genPSWToken(password,psws[1]));
-    //             return (psws[0].toString()===genPSWToken(password,psws[1]).toString());
-    //         }else{
-    //             return false;
-    //         }
-    //     }else {
-    //         return false;
-    //     }
-    // });
-    console.log("PSWTOK:"+passwordtoken);
     let psws = passwordtoken.split(".");
     if(psws.length===2){
-        // console.log('Password checking');
-        // // console.log(psws[0]);
-        // // console.log(psws[1]);
-        // // console.log(genPSWToken(password,psws[1]));
-        // console.log(psws[0]===genPSWToken(password,psws[1]));
         return (psws[0].toString()===genPSWToken(password,psws[1]).toString());
     }else{
         return false;

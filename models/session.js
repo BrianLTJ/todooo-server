@@ -11,4 +11,5 @@ var sessionSchema = new Schema({
     uid: {type: String,default:""},
     createTime: {type: Date, default:Date.now,expires:config.token_exp_time}
 });
+
 module.exports = mongoose.model("Session",sessionSchema);
