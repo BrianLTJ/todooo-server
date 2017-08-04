@@ -9,11 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "base64url": "^2.0.0",
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "csprng": "^0.1.2",
     "express": "^4.15.3",
-    "mongo": "^0.1.0",
-    "mongodb": "^2.2.29",
-    "pbkdf2": "^3.0.12"
+    "jsonwebtoken": "^7.4.1",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.11.5",
+    "morgan": "^1.8.2"
   }
 }
